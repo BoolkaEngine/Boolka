@@ -9,3 +9,6 @@ cmake-*
 
 # Build products
 out
+
+# Clangd cache
+.cache
