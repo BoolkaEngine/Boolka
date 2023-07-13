@@ -1,0 +1,38 @@
+# Set CMake variable to TRUE and define preprocessor macro
+macro(platform_set arg)
+    set(PLATFORM_${arg} TRUE)
+    add_compile_definitions(PLATFORM_${arg})
+endmacro()
+
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(PLATFORM_ARCH 64)
+    platform_set(X64)
+elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    set(PLATFORM_ARCH 32)
+    platform_set(X32)
+else()
+    message(FATAL_ERROR "Failed to detect arch")
+endif()
+
+if(WIN32) # Windows
+    set(PLATFORM_OS win)
+    add_compile_definitions(PLATFORM_DLL_EXTENSION=".dll")
+    add_compile_definitions(UNICODE _UNICODE)
+    platform_set(WINDOWS)
+elseif(UNIX) # Linux, macOS
+    if(APPLE)
+        add_compile_definitions(PLATFORM_DLL_EXTENSION=".dylib")
+        set(PLATFORM_OS osx)
+        platform_set(OSX)
+    else()
+        add_compile_definitions(PLATFORM_DLL_EXTENSION=".so")
+        set(PLATFORM_OS linux)
+        platform_set(LINUX)
+    endif()
+else()
+    message(FATAL_ERROR "Failed to detect OS")
+endif()
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions(DEBUG)
+endif()

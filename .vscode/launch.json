@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "name": "win64",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/out/bin/win64/launcher.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/out/bin/win64",
+      "environment": [],
+      "console": "internalConsole"
+    }
+  ]
+}

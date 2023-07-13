@@ -1,0 +1,11 @@
+# IDEs
+.vscode/*
+!.vscode/launch.json
+.idea
+
+# CMake cache
+build*
+cmake-*
+
+# Build products
+out
