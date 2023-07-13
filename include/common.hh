@@ -2,10 +2,14 @@
 
 #ifndef API_EXPORT
 
-#if defined(PLATFORM_EXPORT) && defined(PLATFORM_WINDOWS)
+#ifdef PLATFORM_WINDOWS
+#ifdef PLATFORM_EXPORT
 #define API_EXPORT __declspec(dllexport)
 #else
 #define API_EXPORT __declspec(dllimport)
+#endif
+#else
+#define API_EXPORT
 #endif
 
 #endif

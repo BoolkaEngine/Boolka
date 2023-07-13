@@ -1,5 +1,5 @@
 project(launcher)
 
-set(PROJECT_SRC "windows/main.cc")
+set(PROJECT_SRC "Launcher.cc")
 
 include(exe)

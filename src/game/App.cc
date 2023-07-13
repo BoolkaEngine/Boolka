@@ -1,8 +1,6 @@
 #include <engine/ServiceLocator.hh>
 #include <engine/services/Window.hh>
 
-#include <Windows.h>
-
 extern "C" API_EXPORT void run() {
     g_serviceLocator = ServiceLocator::init();
 
