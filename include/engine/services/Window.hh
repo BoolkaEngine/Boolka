@@ -1,6 +1,8 @@
 #pragma once
 
+#include "Service.hh"
 #include <string>
+#include <common.hh>
 
 enum WindowMode {
     WINDOWED,
@@ -9,14 +11,13 @@ enum WindowMode {
 };
 
 struct WindowOpenParams {
-    uint32_t width;
-    uint32_t height;
+    u32 width;
+    u32 height;
     std::string title;
     WindowMode mode;
 };
 
-class IWindowService {
-public:
+struct IWindowService : Service<IWindowService> {
     virtual void open(WindowOpenParams params) = 0;
     virtual void close() = 0;
     virtual void run() = 0;

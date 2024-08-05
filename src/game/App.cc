@@ -2,11 +2,9 @@
 #include <engine/services/Window.hh>
 
 extern "C" API_EXPORT void run() {
-    g_serviceLocator = ServiceLocator::init();
+    ServiceLocator::shared()->provideDefaults();
 
-    auto windowService = g_serviceLocator->get<IWindowService>();
-    if (!windowService)
-        return;
+    auto windowService = IWindowService::get();
 
     windowService->open({
         .width = 1280,

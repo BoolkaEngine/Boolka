@@ -2,12 +2,11 @@
 
 #include "services/Window.hh"
 
-#define SERVICE_DECLARE(serviceName, serviceInterface) g_serviceLocator->provide<serviceInterface>(new serviceName())
+ServiceLocator* ServiceLocator::shared() {
+    static auto inst = new ServiceLocator();
+    return inst;
+}
 
-ServiceLocator* ServiceLocator::init() {
-    g_serviceLocator = new ServiceLocator();
-
-    SERVICE_DECLARE(WindowService, IWindowService);
-
-    return g_serviceLocator;
+void ServiceLocator::provideDefaults() {
+    provide<IWindowService>(new WindowService());
 }
